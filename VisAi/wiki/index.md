@@ -12,36 +12,46 @@ updated: 2026-07-18
 
 ---
 
-## 📄 Sources (1)
+## 📄 Sources (3)
 
 | Pagina | Tipo | Data | Riassunto |
 |--------|------|------|-----------|
-| [[attention-is-all-you-need]] | paper | 2017-06-12 | Paper fondativo del Transformer. Elimina ricorrenza e convoluzioni a favore di self-attention pura. Nuovo SOTA su traduzione EN→DE e EN→FR. |
+| [[attention-is-all-you-need]] | paper | 2017-06-12 | Paper fondativo del Transformer. Elimina ricorrenza e convoluzioni a favore di self-attention pura. |
+| [[pytorch-in-one-hour]] | article | 2025-07-02 | Tutorial completo su PyTorch di Sebastian Raschka: tensori, autograd, training loop, GPU e multi-GPU con DDP. |
+| [[visai-progetto-readme]] | note | 2026-07-18 | Documento fondativo del progetto VisAi: anti-theft AI per retail con Edge AI, action recognition e object counting. |
 
 ---
 
-## 👤 Entities (0)
+## 👤 Entities (2)
 
 | Pagina | Tipo | Tags | Riassunto |
 |--------|------|------|-----------|
-| — | — | — | *Autori del paper (Vaswani et al.) — pagine entità da creare su richiesta* |
+| [[sebastian-raschka]] | person | ricercatore, deep-learning, pytorch | Ricercatore ML, educatore e autore di riferimento per PyTorch e deep learning |
+| [[pytorch]] | tool | framework, deep-learning, python | Libreria open-source Python per il deep learning, la più usata nella ricerca dal 2019 |
 
 ---
 
-## 💡 Concepts (2)
+## 💡 Concepts (8)
 
 | Pagina | Dominio | Complessità | Riassunto |
 |--------|---------|-------------|-----------|
 | [[transformer]] | Deep Learning / NLP | intermediate | Architettura neurale basata su attenzione, fondamento di tutti gli LLM moderni |
 | [[self-attention]] | Deep Learning | intermediate | Meccanismo che permette a ogni token di guardare tutti gli altri nella sequenza |
+| [[tensor]] | Deep Learning / Fondamenti | basic | Struttura dati fondamentale che generalizza scalari, vettori e matrici |
+| [[autograd]] | Deep Learning / Ottimizzazione | intermediate | Motore di differenziazione automatica di PyTorch, calcola gradienti via computation graph |
+| [[distributed-data-parallel]] | Deep Learning / Infrastruttura | advanced | Strategia di training distribuito su GPU multiple |
+| [[edge-ai]] | AI / Infrastruttura | intermediate | Processing AI locale on-premise, senza cloud — latenza zero e privacy by design |
+| [[action-recognition]] | Computer Vision | advanced | Riconoscimento azioni umane e stima posa da video per anomaly detection |
+| [[object-counting]] | Computer Vision | advanced | Conteggio e re-identificazione oggetti attraverso frame video |
 
 ---
 
-## 🗂️ Topics (1)
+## 🗂️ Topics (2)
 
 | Pagina | Tags | N. Fonti | Riassunto |
 |--------|------|----------|-----------|
-| [[deep-learning-nlp]] | deep-learning, nlp, ai | 1 | Evoluzione delle architetture neurali per il linguaggio naturale |
+| [[deep-learning-nlp]] | deep-learning, nlp, ai | 2 | Evoluzione delle architetture neurali per il linguaggio naturale |
+| [[computer-vision-retail-security]] | computer-vision, retail, edge-ai | 1 | Computer vision per la prevenzione furti nel retail — progetto VisAi |
 
 ---
 
@@ -63,4 +73,4 @@ updated: 2026-07-18
 
 ---
 
-*Ultimo aggiornamento: 2026-07-18 00:58 — Ingestione #1: Attention Is All You Need*
+*Ultimo aggiornamento: 2026-07-18 11:10 — Ingestione #3: README Progetto VisAi*

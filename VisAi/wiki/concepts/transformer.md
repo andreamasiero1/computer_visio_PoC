@@ -7,7 +7,7 @@ tags: [transformer, architettura-neurale, deep-learning, nlp]
 domain: "Deep Learning / NLP"
 complexity: intermediate
 confidence: high
-related: ["[[self-attention]]", "[[multi-head-attention]]", "[[positional-encoding]]", "[[nlp]]", "[[architetture-neurali]]"]
+related: ["[[self-attention]]", "[[multi-head-attention]]", "[[positional-encoding]]", "[[nlp]]", "[[architetture-neurali]]", "[[pytorch]]", "[[tensor]]"]
 ---
 
 # 🧩 Transformer
@@ -82,6 +82,7 @@ Il Transformer ha risolto due limitazioni fondamentali delle RNN:
 ## Fonti
 
 - [[attention-is-all-you-need]] — Paper originale (Vaswani et al., 2017)
+- [[pytorch-in-one-hour]] — Implementazione pratica di reti neurali (inclusi modelli basati su Transformer) in PyTorch
 
 ---
 

@@ -1,51 +1,41 @@
 {
   "main": {
-    "id": "fab8f9409f95d14a",
+    "id": "b4d5d75a8db2f70a",
     "type": "split",
     "children": [
       {
-        "id": "e1a0141f5ca065d5",
+        "id": "b8ca48167491107e",
         "type": "tabs",
         "children": [
           {
-            "id": "df14d2fe1d19b144",
+            "id": "43be21d57a23d758",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Vista grafo"
-            }
-          },
-          {
-            "id": "5119f8862003e347",
-            "type": "leaf",
-            "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "Senza nome.base",
-                "viewName": "Tabella"
+                "file": "wiki/sources/visai-progetto-readme.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-table",
-              "title": "Senza nome"
+              "icon": "lucide-file",
+              "title": "visai-progetto-readme"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "9c4666489d277c24",
+    "id": "aad1453345465370",
     "type": "split",
     "children": [
       {
-        "id": "9df99da103954b29",
+        "id": "01398246636ecf9c",
         "type": "tabs",
         "children": [
           {
-            "id": "3658cd6b823b83bf",
+            "id": "5a63c5b256c7a6f4",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -58,7 +48,7 @@
             }
           },
           {
-            "id": "95820e293db42e49",
+            "id": "60a976b3b77721b8",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -75,7 +65,7 @@
             }
           },
           {
-            "id": "37b9d66d249287e1",
+            "id": "bb9a006808846c74",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -91,20 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "3be18cd571a1cf59",
+    "id": "a7107ea160fc93e7",
     "type": "split",
     "children": [
       {
-        "id": "16ef073b0a6ce787",
+        "id": "d8e439cc45781806",
         "type": "tabs",
         "children": [
           {
-            "id": "57855ca0fb39a166",
+            "id": "411705d065bdc1b0",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Senza nome.base",
+                "file": "wiki/sources/visai-progetto-readme.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Riferimenti a Senza nome"
+              "title": "Riferimenti a visai-progetto-readme"
             }
           },
           {
-            "id": "c47637436015cd49",
+            "id": "b95101028a185a77",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Senza nome.base",
+                "file": "wiki/sources/visai-progetto-readme.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Collegamenti in uscita da Senza nome"
+              "title": "Collegamenti in uscita da visai-progetto-readme"
             }
           },
           {
-            "id": "7c5d7215dcea401f",
+            "id": "2396cf9a6eb95726",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -147,7 +137,7 @@
             }
           },
           {
-            "id": "18eab083325769fe",
+            "id": "ef6257013085704a",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -161,18 +151,18 @@
             }
           },
           {
-            "id": "3a9352815941645e",
+            "id": "1a6c128190a2264a",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Senza nome.base",
+                "file": "wiki/sources/visai-progetto-readme.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Struttura di Senza nome"
+              "title": "Struttura di visai-progetto-readme"
             }
           }
         ]
@@ -193,9 +183,22 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "5119f8862003e347",
+  "active": "43be21d57a23d758",
   "lastOpenFiles": [
-    "Senza nome.base",
-    "Benvenuto.md"
+    "raw/articles/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
+    "wiki/topics/computer-vision-retail-security.md",
+    "wiki/concepts/object-counting.md",
+    "wiki/concepts/action-recognition.md",
+    "wiki/concepts/edge-ai.md",
+    "wiki/sources/visai-progetto-readme.md",
+    "wiki/concepts/distributed-data-parallel.md",
+    "wiki/concepts/autograd.md",
+    "wiki/concepts/tensor.md",
+    "wiki/entities/pytorch.md",
+    "wiki/entities/sebastian-raschka.md",
+    "wiki/sources/pytorch-in-one-hour.md",
+    "raw/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
+    "Clippings/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
+    "Clippings"
   ]
 }
