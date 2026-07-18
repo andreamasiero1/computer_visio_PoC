@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/sources/visai-progetto-readme.md",
+                "file": "raw/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "visai-progetto-readme"
+              "title": "PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs"
             }
           }
         ]
@@ -185,19 +185,19 @@
   },
   "active": "43be21d57a23d758",
   "lastOpenFiles": [
+    "raw/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
+    "wiki/sources/visai-progetto-readme.md",
     "raw/articles/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
     "wiki/topics/computer-vision-retail-security.md",
     "wiki/concepts/object-counting.md",
     "wiki/concepts/action-recognition.md",
     "wiki/concepts/edge-ai.md",
-    "wiki/sources/visai-progetto-readme.md",
     "wiki/concepts/distributed-data-parallel.md",
     "wiki/concepts/autograd.md",
     "wiki/concepts/tensor.md",
     "wiki/entities/pytorch.md",
     "wiki/entities/sebastian-raschka.md",
     "wiki/sources/pytorch-in-one-hour.md",
-    "raw/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
     "Clippings/PyTorch in One Hour From Tensors to Training Neural Networks on Multiple GPUs.md",
     "Clippings"
   ]
