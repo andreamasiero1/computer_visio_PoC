@@ -31,7 +31,7 @@ jobs:
       - name: Prepara i file per il sito web
         run: |
           mkdir -p public
-          cp main.pdf public/
+          cp *.pdf public/
           if [ -f index.html ]; then cp index.html public/; fi
 
       - name: Carica l'artefatto di build
