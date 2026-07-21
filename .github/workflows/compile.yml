@@ -2,16 +2,15 @@ name: Compila LaTeX e Pubblica PDF
 
 on:
   push:
-    branches: ["main"] # Cambia in 'master' se il tuo ramo principale si chiama così
-  workflow_dispatch:   # Ti permette di avviare la compilazione anche manualmente da interfaccia web
+    # QUI diciamo a GitHub di avviare l'automazione SOLO quando fai push sul ramo Doc
+    branches: ["Doc"] 
+  workflow_dispatch:
 
-# Permessi di sicurezza necessari per pubblicare su GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Evita che deploy simultanei si sovrappongano
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -20,13 +19,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Scarica il codice repository
+      - name: Scarica il codice repository (dal ramo Doc)
         uses: actions/checkout@v4
 
       - name: Compila il file LaTeX in PDF
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex # Se il tuo file ha un nome diverso, modificalo qui
+          root_file: main.tex # Controlla che il nome del tuo file tex sia corretto
           # args: -pdf -file-line-error -interaction=nonstopmode
 
       - name: Prepara i file per il sito web
