@@ -1,0 +1,38 @@
+name: Compila LaTeX e Pubblica su GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Scarica i tuoi file
+        uses: actions/checkout@v4
+
+      - name: 2. Compila il file LaTeX (es. main.tex)
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+
+      - name: 3. Prepara la cartella per il sito
+        run: |
+          mkdir public
+          mv main.pdf public/
+          echo "<html><body><h1>I miei PDF</h1><a href='main.pdf'>Scarica PDF</a></body></html>" > public/index.html
+
+      - name: 4. Pubblica su GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: public
+          branch: gh-pages

@@ -1,0 +1,624 @@
+% =============================================================================
+% VisAi — Analisi dei Requisiti Tecnici
+% Progetto: Sistema Anti-Taccheggio basato su Computer Vision ed Edge AI
+% Autore: Andrea Masiero
+% Data: Luglio 2026
+% =============================================================================
+
+\documentclass[a4paper, 12pt]{article}
+
+% --- Pacchetti ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+
+% --- Geometria pagina ---
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+% --- Colori personalizzati ---
+\definecolor{visaiblue}{HTML}{1A73E8}
+\definecolor{visaidark}{HTML}{1B1F3B}
+\definecolor{visaigray}{HTML}{5F6368}
+\definecolor{visailight}{HTML}{E8F0FE}
+\definecolor{visaigreen}{HTML}{34A853}
+\definecolor{visaiorange}{HTML}{F9AB00}
+\definecolor{visaired}{HTML}{EA4335}
+
+% --- Hyperref ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=visaiblue,
+    urlcolor=visaiblue,
+    citecolor=visaiblue,
+    pdftitle={VisAi — Analisi dei Requisiti Tecnici},
+    pdfauthor={Andrea Masiero}
+}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\textcolor{visaigray}{VisAi — Analisi dei Requisiti Tecnici}}
+\fancyhead[R]{\footnotesize\textcolor{visaigray}{Luglio 2026}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Titoli sezione ---
+\titleformat{\section}
+    {\Large\bfseries\color{visaidark}}
+    {\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+    {\large\bfseries\color{visaiblue}}
+    {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{visaidark}}
+    {\thesubsubsection}{1em}{}
+
+% --- Comandi personalizzati ---
+\newcommand{\reqid}[1]{\texttt{\textcolor{visaiblue}{#1}}}
+\newcommand{\priority}[1]{%
+    \ifx#1H\textcolor{visaired}{\textbf{ALTA}}%
+    \else\ifx#1M\textcolor{visaiorange}{\textbf{MEDIA}}%
+    \else\textcolor{visaigreen}{\textbf{BASSA}}%
+    \fi\fi
+}
+\newcommand{\visai}{\textsc{VisAi}}
+
+% --- Nuova colonna per tabularx ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% =============================================================================
+\begin{document}
+
+% --- Pagina di copertina ---
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge\bfseries\textcolor{visaidark}{VisAi}\par}
+    \vspace{0.5cm}
+    {\LARGE\textcolor{visaiblue}{Analisi dei Requisiti Tecnici}\par}
+    \vspace{1cm}
+    {\large Sistema Anti-Taccheggio basato su\\Computer Vision ed Edge AI\par}
+    \vspace{2cm}
+    {\large\textcolor{visaigray}{Versione 1.0}\par}
+    \vspace{0.5cm}
+    {\large\textcolor{visaigray}{Luglio 2026}\par}
+    \vspace{3cm}
+    \begin{tabular}{ll}
+        \textbf{Autore:} & Andrea Masiero \\
+        \textbf{Progetto:} & VisAi — Computer Vision PoC \\
+        \textbf{Classificazione:} & Confidenziale \\
+    \end{tabular}
+    \vfill
+\end{titlepage}
+
+% --- Indice ---
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{Introduzione}
+% =============================================================================
+
+\subsection{Scopo del Documento}
+
+Il presente documento definisce i \textbf{requisiti tecnici} del progetto \visai{}, un sistema di prevenzione dei furti basato su Computer Vision ed Edge AI per il settore retail dell'abbigliamento. L'obiettivo è fornire una specifica completa e strutturata che guidi lo sviluppo del prodotto, dalla fase di Proof of Concept (PoC) fino al deployment in produzione.
+
+\subsection{Visione del Progetto}
+
+\visai{} mira a \textbf{sostituire completamente i sistemi antitaccheggio fisici} (placche EAS, antenne acustiche/magnetoacustiche e radiofrequenza) con una soluzione basata interamente sull'intelligenza artificiale. Il sistema è progettato per eliminare i falsi allarmi e i costi operativi legati alla fornitura, applicazione e rimozione delle placche fisiche.
+
+\subsection{Target di Mercato}
+
+Grandi catene di Retail, con focus iniziale su:
+\begin{itemize}
+    \item Fast Fashion (es.\ Zara, H\&M, Primark)
+    \item Grandi magazzini (es.\ Rinascente, Coin)
+    \item Catene sportswear (es.\ Decathlon, Nike Store)
+\end{itemize}
+
+\subsection{Glossario}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Termine} & \textbf{Definizione} \\
+    \midrule
+    Edge AI & Esecuzione di modelli AI direttamente su hardware locale (on-premise), senza invio dati al cloud \\
+    Action Recognition & Task di CV che riconosce e classifica azioni umane in un video \\
+    Pose Estimation & Individuazione delle articolazioni chiave (keypoints) del corpo umano \\
+    Object Counting & Conteggio automatico di oggetti in un flusso video \\
+    Re-Identification & Riconoscimento della stessa entità attraverso viste o momenti temporali diversi \\
+    EAS & Electronic Article Surveillance — sistemi antitaccheggio tradizionali \\
+    FPS & Frames Per Second — frequenza di elaborazione dei fotogrammi \\
+    ONNX & Open Neural Network Exchange — formato interoperabile per modelli AI \\
+    TensorRT & Framework NVIDIA per ottimizzazione dell'inferenza su GPU \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Architettura di Sistema}
+% =============================================================================
+
+\subsection{Panoramica Architetturale}
+
+Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è dotato di un server fisico proprietario che processa localmente tutti i flussi video. Nessun dato video viene trasferito al cloud.
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    box/.style={rectangle, draw=visaiblue, fill=visailight, rounded corners, 
+                minimum width=3.2cm, minimum height=1cm, align=center,
+                font=\small},
+    server/.style={rectangle, draw=visaidark, fill=visaidark!10, rounded corners,
+                   minimum width=3.5cm, minimum height=1.2cm, align=center,
+                   font=\small\bfseries},
+    alert/.style={rectangle, draw=visaired, fill=visaired!10, rounded corners,
+                  minimum width=3cm, minimum height=1cm, align=center,
+                  font=\small},
+    arr/.style={-{Stealth[length=6pt]}, thick, color=visaigray}
+]
+    % Nodi
+    \node[box] (cam1) {Telecamere\\Area Vendita};
+    \node[box, below=of cam1] (cam2) {Telecamera\\Camerini};
+    \node[server, right=2.5cm of $(cam1)!0.5!(cam2)$] (edge) {Server Edge\\Locale};
+    \node[box, right=2.5cm of edge, yshift=1cm] (ar) {Action\\Recognition};
+    \node[box, right=2.5cm of edge, yshift=-1cm] (oc) {Object\\Counting};
+    \node[alert, right=2cm of $(ar)!0.5!(oc)$] (alert) {Sistema\\Alert};
+    
+    % Frecce
+    \draw[arr] (cam1) -- (edge);
+    \draw[arr] (cam2) -- (edge);
+    \draw[arr] (edge) -- (ar);
+    \draw[arr] (edge) -- (oc);
+    \draw[arr] (ar) -- (alert);
+    \draw[arr] (oc) -- (alert);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Principi Architetturali}
+
+\begin{enumerate}
+    \item \textbf{Privacy by Design}: nessun dato video esce dal punto vendita
+    \item \textbf{Latenza zero}: processing locale per risposta in tempo reale
+    \item \textbf{Resilienza}: funzionamento garantito anche offline (senza connessione internet)
+    \item \textbf{Scalabilità orizzontale}: ogni negozio è un'unità indipendente
+    \item \textbf{Hardware proprietario}: telecamere ottimizzate per il software VisAi
+\end{enumerate}
+
+% =============================================================================
+\section{Requisiti Funzionali}
+% =============================================================================
+
+\subsection{RF-01: Rilevamento Anomalie Comportamentali (Action Recognition)}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Campo} & \textbf{Specifica} \\
+    \midrule
+    \textbf{ID} & \reqid{RF-01} \\
+    \textbf{Priorità} & \priority{H} \\
+    \textbf{Descrizione} & Il sistema deve rilevare anomalie comportamentali e atteggiamenti sospetti finalizzati all'occultamento intenzionale di capi di abbigliamento. \\
+    \textbf{Input} & Stream video in tempo reale dalle telecamere dell'area vendita \\
+    \textbf{Output} & Alert con anomaly score, timestamp, ID telecamera e frame di riferimento \\
+    \textbf{Vincolo critico} & Riduzione a zero dei falsi positivi: il sistema deve distinguere tra atti di furto e gesti normali (mettere le mani in tasca, sistemare la propria borsa, provare un capo) \\
+    \bottomrule
+\end{tabularx}
+
+\subsubsection{Pipeline di Elaborazione}
+
+\begin{enumerate}
+    \item \textbf{Person Detection}: rilevamento di ogni persona nell'inquadratura
+    \item \textbf{Pose Estimation}: stima dello scheletro (keypoints) per ogni persona
+    \item \textbf{Skeleton Sequence Analysis}: analisi temporale della sequenza di movimenti
+    \item \textbf{Action Classification}: classificazione dell'azione (normale / sospetta)
+    \item \textbf{Anomaly Scoring}: assegnazione di un punteggio di anomalia
+    \item \textbf{Alert Generation}: generazione dell'alert se lo score supera la soglia
+\end{enumerate}
+
+\subsubsection{Modelli Candidati}
+
+\subsubsection{Sfide Tecniche}
+
+\begin{itemize}
+    \item \textbf{Zero falsi positivi}: distinguere tra furto e gesti quotidiani innocui
+    \item \textbf{Occlusioni}: soggetti parzialmente nascosti da scaffali, manichini o altri clienti
+    \item \textbf{Varietà di azioni}: l'occultamento può avvenire in modi molto diversi (in tasca, in borsa, sotto vestiti)
+    \item \textbf{Inferenza real-time}: l'intera pipeline deve girare su Edge AI con latenza $< 500$~ms
+    \item \textbf{Illuminazione variabile}: condizioni di luce diverse nelle varie zone del negozio
+    \item \textbf{Multi-persona}: gestione simultanea di più soggetti nell'inquadratura
+\end{itemize}
+
+% ---
+
+\subsection{RF-02: Conteggio Capi nei Camerini (Object Counting / Re-ID)}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Campo} & \textbf{Specifica} \\
+    \midrule
+    \textbf{ID} & \reqid{RF-02} \\
+    \textbf{Priorità} & \priority{H} \\
+    \textbf{Descrizione} & Il sistema deve monitorare gli ingressi/uscite dei camerini, verificando la corrispondenza esatta tra il numero di capi portati all'interno e quelli portati fuori. \\
+    \textbf{Input} & Stream video dalla telecamera dedicata all'ingresso dei camerini \\
+    \textbf{Output} & Alert quando $\Delta = \text{capi\_in} - \text{capi\_out} > 0$ (capi mancanti) \\
+    \textbf{Vincolo critico} & Non è ammesso filmare l'interno del camerino — il sistema opera esclusivamente sulle immagini di entrata e uscita \\
+    \bottomrule
+\end{tabularx}
+
+\subsubsection{Pipeline di Elaborazione}
+
+\begin{enumerate}
+    \item \textbf{Person Detection + Tracking}: rilevamento e tracciamento della persona
+    \item \textbf{Object Detection}: individuazione dei capi di abbigliamento trasportati (in mano, sul braccio, in borsa)
+    \item \textbf{Count IN}: conteggio dei capi al momento dell'ingresso nel camerino
+    \item \textbf{Count OUT}: conteggio dei capi al momento dell'uscita dal camerino
+    \item \textbf{$\Delta$ Calculation}: calcolo della differenza $\Delta = \text{IN} - \text{OUT}$
+    \item \textbf{Alert}: se $\Delta > 0$, generazione dell'alert (capo mancante)
+\end{enumerate}
+
+\subsubsection{Sfide Tecniche}
+
+\begin{itemize}
+    \item \textbf{Privacy del camerino}: nessuna immagine dell'interno — solo entrata/uscita
+    \item \textbf{Occlusioni}: capi piegati, sovrapposti o nascosti in borse
+    \item \textbf{Variabilità dei capi}: colori, dimensioni e textures estremamente variabili
+    \item \textbf{Capi indossati}: il cliente può indossare un capo sotto i propri vestiti
+    \item \textbf{Multi-persona}: più clienti che entrano/escono contemporaneamente
+    \item \textbf{Capi restituiti allo staff}: il camerino può restituire capi non acquistati tramite un addetto
+\end{itemize}
+
+% ---
+
+\subsection{RF-03: Sistema di Alert e Notifiche}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Campo} & \textbf{Specifica} \\
+    \midrule
+    \textbf{ID} & \reqid{RF-03} \\
+    \textbf{Priorità} & \priority{H} \\
+    \textbf{Descrizione} & Il sistema deve generare alert in tempo reale e notificare il personale di sicurezza del punto vendita quando viene rilevata un'anomalia. \\
+    \textbf{Input} & Anomaly score da RF-01 e/o $\Delta > 0$ da RF-02 \\
+    \textbf{Output} & Notifica push, alert su dashboard locale, eventuale segnale acustico discreto \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RF-04: Dashboard di Monitoraggio Locale}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Campo} & \textbf{Specifica} \\
+    \midrule
+    \textbf{ID} & \reqid{RF-04} \\
+    \textbf{Priorità} & \priority{M} \\
+    \textbf{Descrizione} & Il sistema deve fornire una dashboard locale installata sul server Edge che mostri lo stato in tempo reale delle telecamere, gli alert attivi e lo storico degli eventi. \\
+    \textbf{Input} & Dati da tutti i moduli AI e stream telecamere \\
+    \textbf{Output} & Interfaccia web locale accessibile dalla rete del negozio \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RF-05: Oscuramento Volti On-the-Edge}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Campo} & \textbf{Specifica} \\
+    \midrule
+    \textbf{ID} & \reqid{RF-05} \\
+    \textbf{Priorità} & \priority{H} \\
+    \textbf{Descrizione} & Il sistema deve oscurare automaticamente i volti di tutte le persone riprese prima di qualsiasi registrazione o visualizzazione, garantendo la conformità all'EU AI Act. \\
+    \textbf{Input} & Frame video grezzi \\
+    \textbf{Output} & Frame con volti oscurati (blur/pixelation) prima di storage o display \\
+    \textbf{Vincolo} & L'oscuramento deve avvenire on-the-edge, prima che il frame raggiunga qualsiasi storage \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Requisiti Non Funzionali}
+% =============================================================================
+
+\subsection{RNF-01: Prestazioni e Latenza}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Metrica} & \textbf{Requisito} \\
+    \midrule
+    Latenza end-to-end (evento $\rightarrow$ alert) & $< 2$ secondi \\
+    Frame rate di elaborazione & $\geq 15$ FPS per telecamera \\
+    Numero di telecamere simultanee & $\geq 8$ per server Edge \\
+    Throughput totale & $\geq 120$ FPS aggregati su tutte le telecamere \\
+    Tempo di avvio del sistema & $< 60$ secondi \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RNF-02: Affidabilità e Disponibilità}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Metrica} & \textbf{Requisito} \\
+    \midrule
+    Uptime & $\geq 99.5\%$ durante l'orario di apertura del negozio \\
+    Recovery da crash & Restart automatico entro 30 secondi \\
+    Funzionamento offline & Piena operatività anche senza connessione internet \\
+    Gestione failure telecamera & Il sistema deve continuare a operare con le telecamere rimanenti \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RNF-03: Accuratezza dei Modelli AI}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Metrica} & \textbf{Requisito (target)} \\
+    \midrule
+    False Positive Rate (Action Recognition) & $< 1\%$ (obiettivo: $\sim 0\%$) \\
+    Recall (Action Recognition) & $\geq 85\%$ \\
+    Accuratezza conteggio capi (Object Counting) & $\geq 95\%$ \\
+    Precision Person Detection & $\geq 98\%$ \\
+    Accuratezza Face Blurring & $100\%$ (nessun volto non oscurato) \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RNF-04: Sicurezza e Privacy}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Requisito} & \textbf{Dettaglio} \\
+    \midrule
+    Nessun trasferimento video al cloud & Tutti i dati video restano sul server locale \\
+    Crittografia a riposo & I dati salvati localmente devono essere cifrati (AES-256) \\
+    Accesso autenticato & Dashboard e API protette da autenticazione (almeno username/password + HTTPS) \\
+    Log di accesso & Audit trail di tutti gli accessi al sistema \\
+    Data retention & Cancellazione automatica dei dati video dopo un periodo configurabile (default: 72h) \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RNF-05: Scalabilità e Manutenzione}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Requisito} & \textbf{Dettaglio} \\
+    \midrule
+    Aggiornamento remoto dei modelli AI & OTA (Over-The-Air) update dei pesi dei modelli senza downtime \\
+    Aggiornamento software & Deploy remoto di nuove versioni del software applicativo \\
+    Monitoraggio centralizzato & Heartbeat e metriche di salute inviate periodicamente a un backend centrale (solo metadati, mai video) \\
+    Configurazione per negozio & Parametri (soglie, numero telecamere, layout) configurabili per ogni punto vendita \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Requisiti Hardware}
+% =============================================================================
+
+\subsection{RH-01: Server Edge}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Componente} & \textbf{Specifica minima consigliata} \\
+    \midrule
+    GPU & NVIDIA RTX 4090 o equivalente (24~GB VRAM) — in alternativa: NVIDIA L4 / T4 per data center \\
+    CPU & Intel Core i7 / AMD Ryzen 7 (o superiore), $\geq 8$ core \\
+    RAM & $\geq 32$~GB DDR5 \\
+    Storage & $\geq 1$~TB NVMe SSD (per buffer video e log) \\
+    Rete & Gigabit Ethernet (per connessione telecamere PoE e rete locale) \\
+    Alimentazione & UPS integrato o esterno per protezione da blackout \\
+    Form factor & Rack-mount o small form factor (installabile in armadio tecnico del negozio) \\
+    Sistema operativo & Ubuntu 22.04 LTS Server (o superiore) \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RH-02: Telecamere Proprietarie}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Specifica} & \textbf{Requisito} \\
+    \midrule
+    Risoluzione & $\geq 1080$p (Full HD), consigliato 4K per area vendita \\
+    Frame rate & $\geq 30$ FPS \\
+    Lente & Grandangolare ($\geq 120°$ FoV) per area vendita; ottica fissa per camerini \\
+    Visione notturna / IR & Sì, per condizioni di scarsa illuminazione \\
+    Connettività & PoE (Power over Ethernet) — alimentazione e dati su un unico cavo \\
+    Formato stream & RTSP / ONVIF compatibile \\
+    Resistenza & IP65+ per telecamere esterne; IP20 per telecamere interne \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RH-03: Configurazione Tipo per Punto Vendita}
+
+\begin{tabularx}{\textwidth}{clL}
+    \toprule
+    \textbf{Zona} & \textbf{N. Telecamere} & \textbf{Funzione} \\
+    \midrule
+    Area vendita (piano principale) & $4\text{--}6$ & Action Recognition — copertura scaffali e zone ad alto rischio \\
+    Ingresso camerini & $1\text{--}2$ & Object Counting — conteggio capi in/out \\
+    Ingresso/uscita negozio & $1\text{--}2$ & Monitoraggio flussi e correlazione con alert \\
+    \midrule
+    \textbf{Totale per negozio medio} & $\mathbf{6\text{--}10}$ & \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Requisiti Software e Stack Tecnologico}
+% =============================================================================
+
+\subsection{RS-01: Stack di Sviluppo AI}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Componente} & \textbf{Tecnologia} \\
+    \midrule
+    Framework deep learning & PyTorch $\geq 2.x$ \\
+    Inferenza ottimizzata & NVIDIA TensorRT / ONNX Runtime \\
+    Object Detection & Ultralytics YOLOv8/v9 o RT-DETR \\
+    Pose Estimation & HRNet / ViTPose (top-down) o OpenPose (bottom-up) \\
+    Multi-Object Tracking & ByteTrack / BoT-SORT \\
+    Action Recognition & ST-GCN / PoseC3D (skeleton-based) o SlowFast (3D CNN) \\
+    Face Detection + Blurring & RetinaFace / SCRFD + Gaussian Blur \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RS-02: Stack Applicativo}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Componente} & \textbf{Tecnologia} \\
+    \midrule
+    Linguaggio principale & Python 3.11+ \\
+    Video pipeline / decoding & FFmpeg, GStreamer, OpenCV \\
+    API server locale & FastAPI \\
+    Dashboard locale & React / Next.js (web-based, accessibile via browser) \\
+    Database locale & SQLite o PostgreSQL (per eventi, alert, log) \\
+    Containerizzazione & Docker + Docker Compose \\
+    Orchestrazione & Systemd (per servizi) o Kubernetes K3s (per deploy più complessi) \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{RS-03: Ottimizzazione per Edge}
+
+\begin{tabularx}{\textwidth}{lL}
+    \toprule
+    \textbf{Tecnica} & \textbf{Descrizione} \\
+    \midrule
+    Model Quantization & Riduzione precisione dei pesi: FP32 $\rightarrow$ FP16 $\rightarrow$ INT8 \\
+    Pruning & Rimozione delle connessioni ridondanti dalla rete neurale \\
+    Knowledge Distillation & Training di un modello compatto (student) da un modello più grande (teacher) \\
+    TensorRT Compilation & Compilazione del modello ONNX in un engine TensorRT ottimizzato per la GPU specifica \\
+    Batch Processing & Elaborazione di più frame simultaneamente per massimizzare il throughput GPU \\
+    Model Caching & Pre-loading dei modelli in VRAM all'avvio per eliminare il cold-start \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Requisiti di Compliance e Normativa}
+% =============================================================================
+
+\subsection{RC-01: GDPR (Regolamento UE 2016/679)}
+
+\begin{itemize}
+    \item \textbf{Minimizzazione dei dati}: il sistema processa solo i dati strettamente necessari
+    \item \textbf{Nessun trasferimento}: i dati video non lasciano mai il server locale del punto vendita
+    \item \textbf{Data retention limitata}: cancellazione automatica dopo il periodo configurato
+    \item \textbf{Privacy by Design}: l'architettura Edge è stata scelta specificamente per la compliance
+    \item \textbf{DPIA}: necessaria una Data Protection Impact Assessment prima del deployment
+\end{itemize}
+
+\subsection{RC-02: EU AI Act (Regolamento UE 2024/1689)}
+
+\begin{itemize}
+    \item \textbf{Classificazione del rischio}: il sistema potrebbe rientrare nei sistemi ad ``alto rischio'' (sorveglianza biometrica). L'oscuramento dei volti on-the-edge è la strategia per mitigare questo rischio
+    \item \textbf{Oscuramento volti obbligatorio}: nessun dato biometrico viene estratto, memorizzato o trasmesso
+    \item \textbf{Trasparenza}: obbligo di informare i clienti della presenza del sistema (cartellonistica)
+    \item \textbf{Supervisione umana}: il sistema genera alert per il personale, non agisce autonomamente
+\end{itemize}
+
+\subsection{RC-03: Ispettorato del Lavoro e Sindacati}
+
+\begin{itemize}
+    \item \textbf{Art. 4 Statuto dei Lavoratori}: il sistema riprende aree frequentate anche da dipendenti — necessaria autorizzazione dell'Ispettorato del Lavoro o accordo sindacale
+    \item \textbf{Finalità legittima}: la videosorveglianza deve avere finalità di sicurezza patrimoniale, non di controllo dei dipendenti
+    \item \textbf{Informativa ai dipendenti}: obbligo di informare i lavoratori sull'esistenza e le finalità del sistema
+    \item \textbf{Strategia VisAi}: fornire al cliente un ``pacchetto compliance'' pre-confezionato con template per le autorizzazioni
+\end{itemize}
+
+% =============================================================================
+\section{Matrice di Tracciabilità dei Requisiti}
+% =============================================================================
+
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{llcL}
+    \toprule
+    \textbf{ID} & \textbf{Nome} & \textbf{Priorità} & \textbf{Dipendenze} \\
+    \midrule
+    \reqid{RF-01} & Action Recognition & \priority{H} & RH-01, RH-02, RS-01, RF-05 \\
+    \reqid{RF-02} & Object Counting & \priority{H} & RH-01, RH-02, RS-01, RF-05 \\
+    \reqid{RF-03} & Sistema Alert & \priority{H} & RF-01, RF-02, RS-02 \\
+    \reqid{RF-04} & Dashboard & \priority{M} & RS-02, RH-01 \\
+    \reqid{RF-05} & Face Blurring & \priority{H} & RS-01, RC-01, RC-02 \\
+    \reqid{RNF-01} & Prestazioni & \priority{H} & RH-01, RS-03 \\
+    \reqid{RNF-02} & Affidabilità & \priority{H} & RH-01, RS-02 \\
+    \reqid{RNF-03} & Accuratezza AI & \priority{H} & RS-01, RF-01, RF-02 \\
+    \reqid{RNF-04} & Sicurezza/Privacy & \priority{H} & RC-01, RC-02, RS-02 \\
+    \reqid{RNF-05} & Manutenzione & \priority{M} & RS-02, RH-01 \\
+    \reqid{RH-01} & Server Edge & \priority{H} & — \\
+    \reqid{RH-02} & Telecamere & \priority{H} & RH-01 \\
+    \reqid{RC-01} & GDPR & \priority{H} & RF-05, RNF-04 \\
+    \reqid{RC-02} & EU AI Act & \priority{H} & RF-05 \\
+    \reqid{RC-03} & Isp. Lavoro & \priority{H} & RC-01, RC-02 \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+% =============================================================================
+\section{Rischi Tecnici e Mitigazioni}
+% =============================================================================
+
+\begin{tabularx}{\textwidth}{clLL}
+    \toprule
+    \textbf{\#} & \textbf{Rischio} & \textbf{Impatto} & \textbf{Mitigazione} \\
+    \midrule
+    1 & Falsi positivi eccessivi & Perdita di fiducia del cliente, inutilizzabilità del sistema & Soglie conservative in produzione; training con dataset reali del negozio; periodo di ``shadow mode'' senza alert reali \\
+    2 & Risorse GPU insufficienti & Frame drop, alert in ritardo & Ottimizzazione modelli (TensorRT, INT8); selezione di modelli leggeri; upgrade GPU \\
+    3 & Occlusioni pesanti & Mancato rilevamento di azioni sospette & Multi-camera fusion; posizionamento strategico delle telecamere; modelli robusti alle occlusioni \\
+    4 & Variabilità dell'illuminazione & Degradazione delle performance dei modelli & Data augmentation durante il training; telecamere con IR; preprocessing adattivo \\
+    5 & Evoluzione normativa & Blocco del deployment per non conformità & Monitoraggio costante delle normative; design modulare per adattarsi rapidamente \\
+    6 & Resistenza del personale & Rifiuto o boicottaggio del sistema & Comunicazione trasparente; coinvolgimento dei sindacati fin dalla fase pilota \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Metriche di Successo (KPI)}
+% =============================================================================
+
+\begin{tabularx}{\textwidth}{lLl}
+    \toprule
+    \textbf{KPI} & \textbf{Descrizione} & \textbf{Target} \\
+    \midrule
+    False Positive Rate & Percentuale di alert generati erroneamente & $< 1\%$ \\
+    Detection Rate & Percentuale di furti effettivi rilevati dal sistema & $\geq 85\%$ \\
+    Latenza alert & Tempo tra l'evento e la ricezione dell'alert & $< 2$~s \\
+    Accuratezza conteggio & Corrispondenza tra conteggio reale e stimato dei capi & $\geq 95\%$ \\
+    Uptime & Disponibilità del sistema durante l'orario di apertura & $\geq 99.5\%$ \\
+    ROI per negozio & Riduzione delle perdite per furto rispetto al costo del sistema & $> 3\times$ \\
+    Tempo di deployment & Tempo per installare e configurare un nuovo punto vendita & $< 1$ giorno \\
+    \bottomrule
+\end{tabularx}
+
+% =============================================================================
+\section{Prossimi Passi}
+% =============================================================================
+
+\begin{enumerate}
+    \item \textbf{PoC (Proof of Concept)}: implementare la pipeline Action Recognition con un singolo stream video su hardware di sviluppo, utilizzando un dataset pubblico di azioni anomale.
+    \item \textbf{Dataset proprietario}: raccogliere un dataset di occultamento merce in ambiente controllato per il fine-tuning dei modelli.
+    \item \textbf{Benchmark modelli}: confrontare le performance di SlowFast vs ST-GCN vs PoseC3D su hardware Edge target.
+    \item \textbf{Prototipo Object Counting}: sviluppare la pipeline YOLO + ByteTrack + line crossing per il conteggio capi ai camerini.
+    \item \textbf{Negozio pilota}: definire metriche, KPI e accordi per il primo test in un negozio reale.
+\end{enumerate}
+
+% =============================================================================
+\vfill
+\begin{center}
+    \textcolor{visaigray}{\rule{0.5\textwidth}{0.4pt}}\\
+    \vspace{0.5cm}
+    \textcolor{visaigray}{\footnotesize Fine del documento — VisAi, Analisi dei Requisiti Tecnici v1.0}
+\end{center}
+
+\end{document}
