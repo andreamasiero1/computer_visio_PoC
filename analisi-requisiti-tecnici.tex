@@ -180,10 +180,16 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     % Nodi
     \node[box] (cam1) {Telecamere\\Area Vendita};
     \node[box, below=of cam1] (cam2) {Telecamera\\Camerini};
-    \node[server, right=2.5cm of $(cam1)!0.5!(cam2)$] (edge) {Server Edge\\Locale};
+    
+    % Coordinata ausiliaria per evitare ambiguità di posizionamento con positioning
+    \coordinate (center_cam) at ($(cam1)!0.5!(cam2)$);
+    \node[server, right=2.5cm of center_cam] (edge) {Server Edge\\Locale};
+    
     \node[box, right=2.5cm of edge, yshift=1cm] (ar) {Action\\Recognition};
     \node[box, right=2.5cm of edge, yshift=-1cm] (oc) {Object\\Counting};
-    \node[alert, right=2cm of $(ar)!0.5!(oc)$] (alert) {Sistema\\Alert};
+    
+    \coordinate (center_logic) at ($(ar)!0.5!(oc)$);
+    \node[alert, right=2cm of center_logic] (alert) {Sistema\\Alert};
     
     % Frecce
     \draw[arr] (cam1) -- (edge);
@@ -433,7 +439,7 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \midrule
     Risoluzione & $\geq 1080$p (Full HD), consigliato 4K per area vendita \\
     Frame rate & $\geq 30$ FPS \\
-    Lente & Grandangolare ($\geq 120°$ FoV) per area vendita; ottica fissa per camerini \\
+    Lente & Grandangolare ($\geq 120^\circ$ FoV) per area vendita; ottica fissa per camerini \\
     Visione notturna / IR & Sì, per condizioni di scarsa illuminazione \\
     Connettività & PoE (Power over Ethernet) — alimentazione e dati su un unico cavo \\
     Formato stream & RTSP / ONVIF compatibile \\
