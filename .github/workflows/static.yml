@@ -33,6 +33,7 @@ jobs:
           mkdir -p public
           cp *.pdf public/
           if [ -f index.html ]; then cp index.html public/; fi
+          if [ -f style.css ]; then cp style.css public/; fi
 
       - name: Carica l'artefatto di build
         uses: actions/upload-pages-artifact@v3
