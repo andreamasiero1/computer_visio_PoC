@@ -260,14 +260,14 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \textbf{Descrizione} & Il sistema deve monitorare gli ingressi/uscite dei camerini, verificando la corrispondenza esatta tra il numero di capi portati all'interno e quelli portati fuori. \\
     \textbf{Input} & Stream video dalla telecamera dedicata all'ingresso dei camerini \\
     \textbf{Output} & Alert quando $\Delta = \text{capi\_in} - \text{capi\_out} > 0$ (capi mancanti) \\
-    \textbf{Vincolo critico} & Non è ammesso filmare l'interno del camerino — il sistema opera esclusivamente sulle immagini di entrata e uscita \\
+    \textbf{Vincolo critico} & Non è ammesso filmare l'interno del camerino — il sistema opera esclusivamente sulle immagini di entrata e uscita, bisogna pertanto operare introducendo una zona morta e oscurata dal sistema alle telecamere.\\
     \bottomrule
 \end{tabularx}
 
 \subsubsection{Pipeline di Elaborazione}
 
 \begin{enumerate}
-    \item \textbf{Person Detection + Tracking}: rilevamento e tracciamento della persona
+    \item \textbf{Death zone}: introduzione di una zona morta nel sistema 
     \item \textbf{Object Detection}: individuazione dei capi di abbigliamento trasportati (in mano, sul braccio, in borsa)
     \item \textbf{Count IN}: conteggio dei capi al momento dell'ingresso nel camerino
     \item \textbf{Count OUT}: conteggio dei capi al momento dell'uscita dal camerino
@@ -330,6 +330,7 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \textbf{Vincolo} & L'oscuramento deve avvenire on-the-edge, prima che il frame raggiunga qualsiasi storage \\
     \bottomrule
 \end{tabularx}
+
 
 % =============================================================================
 \section{Requisiti Non Funzionali}
