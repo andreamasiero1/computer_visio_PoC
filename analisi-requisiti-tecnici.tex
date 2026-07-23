@@ -24,7 +24,6 @@
 
 \usepackage{amsmath}
 \usepackage{tikz}
-\usetikzlibrary{calc}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
 
 % --- Geometria pagina ---
@@ -180,16 +179,10 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     % Nodi
     \node[box] (cam1) {Telecamere\\Area Vendita};
     \node[box, below=of cam1] (cam2) {Telecamera\\Camerini};
-    
-    % Coordinata ausiliaria per evitare ambiguità di posizionamento con positioning
-    \coordinate (center_cam) at ($(cam1)!0.5!(cam2)$);
-    \node[server, right=2.5cm of center_cam] (edge) {Server Edge\\Locale};
-    
+    \node[server, right=2.5cm of $(cam1)!0.5!(cam2)$] (edge) {Server Edge\\Locale};
     \node[box, right=2.5cm of edge, yshift=1cm] (ar) {Action\\Recognition};
     \node[box, right=2.5cm of edge, yshift=-1cm] (oc) {Object\\Counting};
-    
-    \coordinate (center_logic) at ($(ar)!0.5!(oc)$);
-    \node[alert, right=2cm of center_logic] (alert) {Sistema\\Alert};
+    \node[alert, right=2cm of $(ar)!0.5!(oc)$] (alert) {Sistema\\Alert};
     
     % Frecce
     \draw[arr] (cam1) -- (edge);
@@ -267,14 +260,14 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \textbf{Descrizione} & Il sistema deve monitorare gli ingressi/uscite dei camerini, verificando la corrispondenza esatta tra il numero di capi portati all'interno e quelli portati fuori. \\
     \textbf{Input} & Stream video dalla telecamera dedicata all'ingresso dei camerini \\
     \textbf{Output} & Alert quando $\Delta = \text{capi\_in} - \text{capi\_out} > 0$ (capi mancanti) \\
-    \textbf{Vincolo critico} & Non è ammesso filmare l'interno del camerino — il sistema opera esclusivamente sulle immagini di entrata e uscita \\
+    \textbf{Vincolo critico} & Non è ammesso filmare l'interno del camerino — il sistema opera esclusivamente sulle immagini di entrata e uscita, bisogna pertanto operare introducendo una zona morta e oscurata dal sistema alle telecamere.\\
     \bottomrule
 \end{tabularx}
 
 \subsubsection{Pipeline di Elaborazione}
 
 \begin{enumerate}
-    \item \textbf{Person Detection + Tracking}: rilevamento e tracciamento della persona
+    \item \textbf{Death zone}: introduzione di una zona morta nel sistema 
     \item \textbf{Object Detection}: individuazione dei capi di abbigliamento trasportati (in mano, sul braccio, in borsa)
     \item \textbf{Count IN}: conteggio dei capi al momento dell'ingresso nel camerino
     \item \textbf{Count OUT}: conteggio dei capi al momento dell'uscita dal camerino
@@ -337,6 +330,7 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \textbf{Vincolo} & L'oscuramento deve avvenire on-the-edge, prima che il frame raggiunga qualsiasi storage \\
     \bottomrule
 \end{tabularx}
+
 
 % =============================================================================
 \section{Requisiti Non Funzionali}
@@ -439,7 +433,7 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \midrule
     Risoluzione & $\geq 1080$p (Full HD), consigliato 4K per area vendita \\
     Frame rate & $\geq 30$ FPS \\
-    Lente & Grandangolare ($\geq 120^\circ$ FoV) per area vendita; ottica fissa per camerini \\
+    Lente & Grandangolare ($\geq 120°$ FoV) per area vendita; ottica fissa per camerini \\
     Visione notturna / IR & Sì, per condizioni di scarsa illuminazione \\
     Connettività & PoE (Power over Ethernet) — alimentazione e dati su un unico cavo \\
     Formato stream & RTSP / ONVIF compatibile \\
