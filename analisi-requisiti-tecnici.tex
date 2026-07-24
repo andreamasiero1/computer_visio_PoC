@@ -24,7 +24,7 @@
 
 \usepackage{amsmath}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
 
 % --- Geometria pagina ---
 \geometry{
@@ -104,7 +104,7 @@
     {\large\textcolor{visaigray}{Luglio 2026}\par}
     \vspace{3cm}
     \begin{tabular}{ll}
-        \textbf{Autore:} & Andrea Masiero \\
+        \textbf{Autori:} & Andrea Masiero, Alberto Bazzolo \\
         \textbf{Progetto:} & VisAi — Computer Vision PoC \\
         \textbf{Classificazione:} & Confidenziale \\
     \end{tabular}
@@ -125,15 +125,14 @@ Il presente documento definisce i \textbf{requisiti tecnici} del progetto \visai
 
 \subsection{Visione del Progetto}
 
-\visai{} mira a \textbf{sostituire completamente i sistemi antitaccheggio fisici} (placche EAS, antenne acustiche/magnetoacustiche e radiofrequenza) con una soluzione basata interamente sull'intelligenza artificiale. Il sistema è progettato per eliminare i falsi allarmi e i costi operativi legati alla fornitura, applicazione e rimozione delle placche fisiche.
+\visai{} mira a \textbf{sostituire completamente i sistemi antitaccheggio fisici} (placche EAS, antenne acustiche/magnetoacustiche e radiofrequenza) con una soluzione basata interamente sull'intelligenza artificiale. Il sistema è progettato per eliminare i falsi allarmi e i costi operativi legati alla fornitura, applicazione e rimozione delle placche fisiche. Il progetto è nato con l'obiettivo di andare a rivoluzionare un settore nel quale l'introduzione dell'Ai mira a ridurre le perdite che i negozi di abbigliamento hanno ogni anno e che la maggior parte delle volte i sistemi di antitaccheggio tradizionali non riescono a risolvere.
 
 \subsection{Target di Mercato}
 
 Grandi catene di Retail, con focus iniziale su:
 \begin{itemize}
     \item Fast Fashion (es.\ Zara, H\&M, Primark)
-    \item Grandi magazzini (es.\ Rinascente, Coin)
-    \item Catene sportswear (es.\ Decathlon, Nike Store)
+    \item Piccoli negozi di abbigliamento
 \end{itemize}
 
 \subsection{Glossario}
