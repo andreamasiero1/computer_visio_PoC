@@ -2,10 +2,10 @@
 title: "Computer Vision per la Sicurezza Retail"
 type: topic
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-27
 tags: [computer-vision, retail, antitaccheggio, sicurezza, startup, edge-ai]
 confidence: high
-related: ["[[edge-ai]]", "[[action-recognition]]", "[[object-counting]]", "[[pytorch]]", "[[deep-learning-nlp]]"]
+related: ["[[edge-ai]]", "[[action-recognition]]", "[[object-counting]]", "[[pytorch]]", "[[deep-learning-nlp]]", "[[retail-shrinkage]]", "[[revenue-models-visai]]", "[[product-strategy-lean-vs-full]]", "[[competitor-analysis-loss-prevention]]"]
 ---
 
 # 🗂️ Computer Vision per la Sicurezza Retail
@@ -61,10 +61,13 @@ I sistemi antitaccheggio tradizionali hanno limitazioni significative:
 
 | Aspetto | Stato |
 |---------|-------|
-| **Target** | Grandi catene Retail (Fast Fashion, grandi magazzini) |
-| **Business model** | Da validare: SaaS B2B vs performance-based (% furti sventati) |
-| **Go-to-market** | Negozi pilota con metriche/KPI per validazione |
+| **Target** | ✅ Validato: Grandi catene Retail (OVS, Mango, fast fashion) — vedi [[retail-shrinkage]] |
+| **Business model** | ✅ Definito: SaaS ibrido con bonus performance — vedi [[revenue-models-visai]] |
+| **Go-to-market** | ✅ Definito: 4 fasi (pilota gratuito → pay-per-prevention → SaaS → enterprise) |
 | **Value proposition** | Eliminazione placche → risparmio tempo staff, estetica capi, ROI |
+| **Competitor principale** | Veesion (5.000 negozi, $27M ARR) — vedi [[competitor-analysis-loss-prevention]] |
+| **Strategia di prodotto** | ✅ Deciso: Lean (cam esistenti) ora → Full Revolution come evoluzione — vedi [[product-strategy-lean-vs-full]] |
+| **Proiezione ARR (a regime)** | €4-5M per singolo contratto enterprise (OVS/Mango) |
 
 ---
 
@@ -81,26 +84,37 @@ I sistemi antitaccheggio tradizionali hanno limitazioni significative:
 
 ## Concetti chiave
 
+### Tecnici
 - [[edge-ai]] — Architettura di processing locale
 - [[action-recognition]] — Riconoscimento azioni e stima posa
 - [[object-counting]] — Conteggio e re-identificazione oggetti
+
+### Business & Strategia
+- [[retail-shrinkage]] — Dati sulle differenze inventariali (OVS: €8-10M/anno furti, Mango: €12-15M/anno)
+- [[revenue-models-visai]] — SaaS (€290-690/mese) e Pay-per-Prevention (€75/furto)
+- [[product-strategy-lean-vs-full]] — Lean vs Full Revolution con casi studio
+- [[competitor-analysis-loss-prevention]] — Veesion, Amazon JWO, Standard AI
 
 ---
 
 ## Domande aperte
 
-- Quale modello di business (SaaS vs performance) sarà più efficace?
+- ~~Quale modello di business (SaaS vs performance) sarà più efficace?~~ → **Risolto**: modello ibrido SaaS + bonus performance — vedi [[revenue-models-visai]]
 - Come calibrare la soglia di alert per avere zero falsi positivi?
 - Quali modelli (YOLO, DETR, SlowFast, ViTPose) funzionano meglio su hardware Edge?
 - Come gestire scenari di negozio affollato (occlusioni, tracking multi-persona)?
 - Quale sarà la compliance richiesta per il mercato USA vs EU?
+- ~~Telecamere proprietarie o esistenti?~~ → **Risolto**: esistenti per Fase 1, proprietarie per Fase 3 — vedi [[product-strategy-lean-vs-full]]
 
 ---
 
 ## Fonti correlate
 
 - [[visai-progetto-readme]] — Documento fondativo del progetto
+- NRF, ECR Europe / GRTB — Benchmark shrinkage
+- Veesion.io, Amazon JWO, Standard AI — Casi studio competitor
+- OVS S.p.A., Mango — Dati finanziari target
 
 ---
 
-*Pagina creata da ingestione di [[visai-progetto-readme]] — 2026-07-18*
+*Pagina aggiornata con analisi business e strategia — 2026-07-27*

@@ -2,7 +2,7 @@
 title: "Wiki Index"
 type: meta
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-07-27
 ---
 
 # 📚 Wiki Index — VisAi
@@ -31,7 +31,7 @@ updated: 2026-07-18
 
 ---
 
-## 💡 Concepts (8)
+## 💡 Concepts (12)
 
 | Pagina | Dominio | Complessità | Riassunto |
 |--------|---------|-------------|-----------|
@@ -43,6 +43,10 @@ updated: 2026-07-18
 | [[edge-ai]] | AI / Infrastruttura | intermediate | Processing AI locale on-premise, senza cloud — latenza zero e privacy by design |
 | [[action-recognition]] | Computer Vision | advanced | Riconoscimento azioni umane e stima posa da video per anomaly detection |
 | [[object-counting]] | Computer Vision | advanced | Conteggio e re-identificazione oggetti attraverso frame video |
+| [[retail-shrinkage]] | Business / Retail | basic | Differenze inventariali nel retail: benchmark, dati OVS e Mango, impatto sul margine |
+| [[revenue-models-visai]] | Business / Strategy | intermediate | Modelli di ricavo SaaS e Pay-per-Prevention con proiezioni finanziarie |
+| [[product-strategy-lean-vs-full]] | Business / Product Strategy | advanced | Lean (cam esistenti) vs Full Revolution (360°) — casi studio Amazon, Veesion, Standard AI |
+| [[competitor-analysis-loss-prevention]] | Business / Competitive Intelligence | intermediate | Analisi competitiva: Veesion, Amazon JWO, Standard AI — benchmark e differenziazione |
 
 ---
 
@@ -73,4 +77,4 @@ updated: 2026-07-18
 
 ---
 
-*Ultimo aggiornamento: 2026-07-18 11:10 — Ingestione #3: README Progetto VisAi*
+*Ultimo aggiornamento: 2026-07-27 — Ingestione #4: Analisi Business, Revenue Models, Product Strategy, Competitor Analysis*
