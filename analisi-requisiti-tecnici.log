@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.27)  24 JUL 2026 21:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.27)  18 AUG 2026 01:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -641,7 +641,7 @@ Package hyperref Info: Link coloring ON on input line 90.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.43 ...erline {11}Prossimi Passi}{13}{section.11}
+l.43 ...chi Tecnici e Mitigazioni}{13}{section.10}
                                                   % [1])
 \tf@toc=\write5
 \openout5 = `analisi-requisiti-tecnici.toc'.
@@ -651,37 +651,37 @@ Overfull \hbox (21.1167pt too wide) in paragraph at lines 193--194
  [] 
  []
 
-[4] [5] [6] [7]
+[4] [5] [6] [7] [8]
 Missing character: There is no ° in font cmr12!
 Missing character: There is no ° in font cmr12!
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 441.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 450.
 
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 441.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 450.
 
 Missing character: There is no ° in font cmr12!
-[8] [9] [10] [11] [12] [13] (./analisi-requisiti-tecnici.aux)
+[9] [10] [11] [12] [13] [14] (./analisi-requisiti-tecnici.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `analisi-requisiti-tecnici.out' has not changed.
-(rerunfilecheck)             Checksum: F841CB64CBD5D060C52C368959B0081F;8501.
+(rerunfilecheck)             Checksum: C8A5A0E3AF8958C03E7446BDF3777570;8755.
  ) 
 Here is how much of TeX's memory you used:
- 23658 strings out of 468933
- 444049 string characters out of 5453091
- 870201 words of memory out of 5000000
- 51894 multiletter control sequences out of 15000+600000
+ 23663 strings out of 468933
+ 444108 string characters out of 5453091
+ 868203 words of memory out of 5000000
+ 51896 multiletter control sequences out of 15000+600000
  646645 words of font info for 79 fonts, out of 8000000 for 9000
  364 hyphenation exceptions out of 8191
  84i,13n,94p,748b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </Users/andreamasiero/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on analisi-requisiti-tecnici.pdf (14 pages, 209674 bytes).
+Output written on analisi-requisiti-tecnici.pdf (15 pages, 211355 bytes).
 PDF statistics:
- 840 PDF objects out of 1000 (max. 8388607)
- 369 compressed objects within 4 object streams
- 77 named destinations out of 1000 (max. 500000)
- 341 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 857 PDF objects out of 1000 (max. 8388607)
+ 383 compressed objects within 4 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 357 words of extra memory for PDF output out of 10000 (max. 10000000)
 

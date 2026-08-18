@@ -203,6 +203,15 @@ Il sistema adotta un'architettura \textbf{Edge AI pura}: ogni punto vendita è d
     \item \textbf{Hardware proprietario}: telecamere ottimizzate per il software VisAi
 \end{enumerate}
 
+\section{Casi d'uso}
+
+\subsection{Scenario Principale}
+Il sistema di telecamere raccoglie in input un flusso video in tempo reale proveniente dalle telecamere posizionate nell'area vendita.
+Il nostro sistema deve in primo luogo andare a individuare la presenza di persone all'interno dell'area video e successivamente determinare quali di queste sono realmente clienti e quali no.
+Per le persone inividuate deve garantire al privacy, oscurando i volti ed elaborando solo i dati necessari per identificare le azioni che sta compiendo.
+Una volta coperti i volti il sistema deve andare ad eloaborare le immgini video ricevuto in input dalle telecamere. A questo punto identifica lo schema motorio dell'individuo, andando a confrontarlo con un database di schemi motorii noti di azioni pericolose, individuando i seguenti tipi di schemi:
+
+
 % =============================================================================
 \section{Requisiti Funzionali}
 % =============================================================================
