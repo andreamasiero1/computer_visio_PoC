@@ -2,7 +2,7 @@
 title: "Wiki Log"
 type: meta
 created: 2026-07-18
-updated: 2026-07-18
+updated: 2026-08-19
 ---
 
 # 📋 Log — VisAi
@@ -87,5 +87,41 @@ Terza ingestione della wiki. Processato il documento fondativo del progetto VisA
 - **Pagine aggiornate**: `wiki/index.md`, `wiki/overview.md`
 - **Key takeaway**: VisAi mira a sostituire i sistemi antitaccheggio fisici con computer vision ed Edge AI. Due core feature: anomaly detection comportamentale e conteggio capi camerini. Architettura edge-first con hardware proprietario.
 - **Nessuna contraddizione** rilevata — questo è un dominio completamente nuovo rispetto alle fonti precedenti
-- **Nota**: il README contiene anche una richiesta di roadmap (business + tecnica) che potrebbe diventare una pagina `wiki/analyses/`
 
+---
+
+## [2026-07-27 12:00] ingest | Analisi Business & Strategia di Mercato
+
+Quarta ingestione della wiki. Processata l'analisi di mercato, modelli di ricavo, pricing e benchmarking competitivo.
+
+- **Pagine create**:
+  - `wiki/concepts/retail-shrinkage.md` — Differenze inventariali e benchmark OVS/Mango
+  - `wiki/concepts/revenue-models-visai.md` — Modelli di ricavo SaaS e Pay-per-Prevention
+  - `wiki/concepts/product-strategy-lean-vs-full.md` — Strategia Lean (cam esistenti) vs Full Revolution
+  - `wiki/concepts/competitor-analysis-loss-prevention.md` — Benchmark competitor (Veesion, Amazon JWO, Standard AI)
+- **Pagine aggiornate**: `wiki/index.md`, `wiki/overview.md`, `wiki/topics/computer-vision-retail-security.md`
+- **Key takeaway**: Decisione strategica per approccio Lean iniziale con telecamere esistenti ed evoluzione successiva verso hardware custom; validazione mercato retail fast fashion.
+
+---
+
+## [2026-08-19 01:45] ingest | Architettura e Logica del Flusso Sequenziale
+
+Quinta ingestione della wiki. Processato il documento di riferimento per la pipeline di elaborazione video, riconoscimento azioni e innesco allarmi del sistema VisAi.
+
+- **Fonte processata**: `VisAi/raw/notes/architettura-flusso-sequenziale.md`
+- **Pagine create**:
+  - `wiki/sources/architettura-flusso-sequenziale.md` — Scheda fonte dell'architettura sequenziale
+  - `wiki/concepts/cascade-funnel-pipeline.md` — Pagina concetto: Architettura a imbuto (Cascade Funnel)
+  - `wiki/concepts/capo-vivo.md` — Pagina concetto: Capo Vivo e tracciamento selettivo
+  - `wiki/concepts/logica-booleana-allarme.md` — Pagina concetto: Logica booleana e validazione temporale 10s
+- **Pagine aggiornate**:
+  - `wiki/concepts/action-recognition.md` — Integrato trigger esclusivo su Capo Vivo (Fase 4)
+  - `wiki/concepts/edge-ai.md` — Integrati benefici del Cascade Funnel per ottimizzazione Edge
+  - `wiki/topics/computer-vision-retail-security.md` — Integrata pipeline sequenziale a 5 fasi
+  - `wiki/index.md` — Aggiornato indice generale (27 pagine totali)
+  - `wiki/overview.md` — Aggiornata panoramica, metriche e grafo connessioni
+- **Key takeaway**:
+  - **Cascade Funnel**: L'Action Recognition pesante gira solo sull'intersezione Persona-Capo Vivo, risparmiando il 95%+ di calcolo Edge.
+  - **Zone Morte & Filtri**: Mascheramento statico via GUI e filtro valore (€40-50+) eliminano rumore ed evitano overhead da scene understanding.
+  - **Doppia Verifica 10s**: Timer di validazione per eliminare i falsi positivi dovuti a rotazioni del corpo o occlusioni temporanee.
+- **Nessuna contraddizione** rilevata con le fonti precedenti.

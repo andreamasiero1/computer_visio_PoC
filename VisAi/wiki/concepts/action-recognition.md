@@ -2,12 +2,12 @@
 title: "Action Recognition / Pose Estimation"
 type: concept
 created: 2026-07-18
-updated: 2026-07-18
-tags: [action-recognition, pose-estimation, computer-vision, anomaly-detection, deep-learning]
+updated: 2026-08-19
+tags: [action-recognition, pose-estimation, computer-vision, anomaly-detection, deep-learning, capo-vivo, cascade-funnel]
 domain: "Computer Vision"
 complexity: advanced
 confidence: high
-related: ["[[edge-ai]]", "[[object-counting]]", "[[pytorch]]", "[[tensor]]", "[[computer-vision-retail-security]]"]
+related: ["[[edge-ai]]", "[[object-counting]]", "[[pytorch]]", "[[tensor]]", "[[computer-vision-retail-security]]", "[[cascade-funnel-pipeline]]", "[[capo-vivo]]", "[[logica-booleana-allarme]]"]
 ---
 
 # 🧩 Action Recognition / Pose Estimation
@@ -46,46 +46,51 @@ La **Pose Estimation** è il task di individuare le articolazioni chiave (keypoi
 
 ---
 
-## Applicazione nel progetto VisAi
+## Applicazione nel progetto VisAi (Cascade Funnel — Fase 4)
 
 La core feature #1 del progetto richiede il **rilevamento di anomalie comportamentali** finalizzate all'occultamento intenzionale di capi di abbigliamento.
 
-### Sfide specifiche
+Nel modello operativo a imbuto ([[cascade-funnel-pipeline]]), i moduli pesanti di Action Recognition e Pose Estimation **non girano continuamente su tutto il frame**, ma si attivano **esclusivamente quando viene identificato un [[capo-vivo]]**:
 
-| Sfida | Dettaglio |
-|-------|-----------|
-| **Zero falsi positivi** | Distinguere tra furto e gesti normali (mani in tasca, sistemare borsa) |
-| **Occlusioni** | Il soggetto può essere parzialmente nascosto da scaffali, altri clienti |
-| **Varietà di azioni** | L'occultamento può avvenire in modi molto diversi |
-| **Real-time** | L'analisi deve avvenire in tempo reale su Edge AI |
-| **Illuminazione variabile** | Condizioni di luce diverse nelle varie zone del negozio |
+1. **Trigger mirato**: Si analizza unicamente l'intersezione geometrica/spaziale tra la bounding box della Persona (Fase 2) e il Capo Vivo (Fase 3).
+2. **Analisi Cinematica**: Rilevamento di traiettorie anomale degli arti (es. braccio che infila il capo all'interno di una giacca, in uno zaino o sotto un indumento personale).
+3. **Validazione Temporale Sequenziale**: Se scatta il flag di gesto sospetto, la decisione finale è delegata al timer di 10s ([[logica-booleana-allarme]]) per azzerare i falsi positivi da occlusione.
 
-### Pipeline ipotizzata
+### Pipeline Operativa VisAi
 
 ```
-Video stream → Person Detection → Pose Estimation → Skeleton Sequence
-    → Action Classification → Anomaly Score → Alert (se sopra soglia)
+Video Stream (Fase 1: Face Blur + Mask Zone Morte)
+    │
+    ▼ (Fase 2: Person Detection)
+Coordinate Persone
+    │
+    ▼ (Fase 3: Transizione Capo da Zona Morta)
+[ CAPO VIVO ]
+    │
+    ▼ (Fase 4: Pose Estimation + Action Recognition su ROI Intersezione)
+Gesto Sospetto Rilevato
+    │
+    ▼ (Fase 5: Timer 10s Doppia Verifica)
+Allarme Confermato
 ```
-
-> "Rilevamento di anomalie comportamentali e atteggiamenti sospetti finalizzati all'occultamento intenzionale del capo [...] riducendo a zero i falsi positivi." [^1]
 
 ---
 
 ## Connessione con altri concetti
 
-- Richiede [[tensor]] per la rappresentazione dei dati video
-- Implementabile con [[pytorch]] (framework principale)
-- Deve girare in architettura [[edge-ai]] (inferenza locale)
-- Si integra con [[object-counting]] per la seconda core feature
+- Ottimizzato tramite [[cascade-funnel-pipeline]] per girare su architetture [[edge-ai]]
+- Elabora unicamente oggetti promossi a [[capo-vivo]]
+- Condizione abilitante per la [[logica-booleana-allarme]]
+- Richiede [[tensor]] per i dati video e implementabile con [[pytorch]]
+- Si integra con [[object-counting]] per il monitoraggio dei camerini
 
 ---
 
 ## Fonti
 
 - [[visai-progetto-readme]] — Core feature #1 del progetto
-
-[^1]: Fonte: [[visai-progetto-readme]]
+- [[architettura-flusso-sequenziale]] — Flusso a 5 Fasi e trigger Fase 4
 
 ---
 
-*Pagina creata da ingestione di [[visai-progetto-readme]]*
+*Ultimo aggiornamento: 2026-08-19 — Ingestione di [[architettura-flusso-sequenziale]]*

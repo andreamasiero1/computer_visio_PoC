@@ -2,7 +2,7 @@
 title: "Wiki Index"
 type: meta
 created: 2026-07-18
-updated: 2026-07-27
+updated: 2026-08-19
 ---
 
 # 📚 Wiki Index — VisAi
@@ -12,13 +12,14 @@ updated: 2026-07-27
 
 ---
 
-## 📄 Sources (3)
+## 📄 Sources (4)
 
 | Pagina | Tipo | Data | Riassunto |
 |--------|------|------|-----------|
 | [[attention-is-all-you-need]] | paper | 2017-06-12 | Paper fondativo del Transformer. Elimina ricorrenza e convoluzioni a favore di self-attention pura. |
 | [[pytorch-in-one-hour]] | article | 2025-07-02 | Tutorial completo su PyTorch di Sebastian Raschka: tensori, autograd, training loop, GPU e multi-GPU con DDP. |
 | [[visai-progetto-readme]] | note | 2026-07-18 | Documento fondativo del progetto VisAi: anti-theft AI per retail con Edge AI, action recognition e object counting. |
+| [[architettura-flusso-sequenziale]] | note | 2026-08-19 | Pipeline a 5 fasi (Cascade Funnel), tracking Capo Vivo da zone morte e logica booleana allarme 10s. |
 
 ---
 
@@ -31,7 +32,7 @@ updated: 2026-07-27
 
 ---
 
-## 💡 Concepts (12)
+## 💡 Concepts (15)
 
 | Pagina | Dominio | Complessità | Riassunto |
 |--------|---------|-------------|-----------|
@@ -41,8 +42,11 @@ updated: 2026-07-27
 | [[autograd]] | Deep Learning / Ottimizzazione | intermediate | Motore di differenziazione automatica di PyTorch, calcola gradienti via computation graph |
 | [[distributed-data-parallel]] | Deep Learning / Infrastruttura | advanced | Strategia di training distribuito su GPU multiple |
 | [[edge-ai]] | AI / Infrastruttura | intermediate | Processing AI locale on-premise, senza cloud — latenza zero e privacy by design |
-| [[action-recognition]] | Computer Vision | advanced | Riconoscimento azioni umane e stima posa da video per anomaly detection |
+| [[action-recognition]] | Computer Vision | advanced | Riconoscimento azioni umane e stima posa mirato su ROI di Capo Vivo |
 | [[object-counting]] | Computer Vision | advanced | Conteggio e re-identificazione oggetti attraverso frame video |
+| [[cascade-funnel-pipeline]] | Computer Vision / Edge AI | intermediate | Architettura a imbuto per minimizzare il carico computazionale e i falsi positivi |
+| [[capo-vivo]] | Computer Vision | intermediate | Capo d'abbigliamento prelevato da zona morta che diventa target esclusivo del tracking |
+| [[logica-booleana-allarme]] | Computer Vision / Decision Logic | intermediate | Equazione temporale a 3 condizioni con timer di validazione a 10s |
 | [[retail-shrinkage]] | Business / Retail | basic | Differenze inventariali nel retail: benchmark, dati OVS e Mango, impatto sul margine |
 | [[revenue-models-visai]] | Business / Strategy | intermediate | Modelli di ricavo SaaS e Pay-per-Prevention con proiezioni finanziarie |
 | [[product-strategy-lean-vs-full]] | Business / Product Strategy | advanced | Lean (cam esistenti) vs Full Revolution (360°) — casi studio Amazon, Veesion, Standard AI |
@@ -55,7 +59,7 @@ updated: 2026-07-27
 | Pagina | Tags | N. Fonti | Riassunto |
 |--------|------|----------|-----------|
 | [[deep-learning-nlp]] | deep-learning, nlp, ai | 2 | Evoluzione delle architetture neurali per il linguaggio naturale |
-| [[computer-vision-retail-security]] | computer-vision, retail, edge-ai | 1 | Computer vision per la prevenzione furti nel retail — progetto VisAi |
+| [[computer-vision-retail-security]] | computer-vision, retail, edge-ai | 2 | Computer vision per la prevenzione furti nel retail — progetto VisAi |
 
 ---
 
@@ -77,4 +81,4 @@ updated: 2026-07-27
 
 ---
 
-*Ultimo aggiornamento: 2026-07-27 — Ingestione #4: Analisi Business, Revenue Models, Product Strategy, Competitor Analysis*
+*Ultimo aggiornamento: 2026-08-19 — Ingestione #5: Architettura e Logica del Flusso Sequenziale (VisAi)*
