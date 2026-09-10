@@ -1,0 +1,12 @@
+# Dipendenze base per Computer Vision e manipolazione dati
+opencv-python<5.0.0
+numpy
+
+# Machine Learning e Feature Extraction (usati da ReIDService)
+torch
+torchvision
+ultralytics
+
+# Face Detection (usato da BlurService)
+mediapipe<1.0.0
+# pandas
