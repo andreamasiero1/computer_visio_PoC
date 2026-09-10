@@ -2,6 +2,7 @@ from src.core.interfaces import ICounterRepository
 from src.services.blur_service import BlurService
 from src.services.zone_service import ZoneService
 from src.services.person_service import PersonService
+from src.services.count_service import CountService
 from src.services.reid_service import ReIDService
 import cv2
 
@@ -12,6 +13,7 @@ class MainService:
         blur_service: BlurService,
         zone_service: ZoneService,
         person_service: PersonService,
+        count_service: CountService,
         reid_service: ReIDService = None,
         camera_id: str = "cam_default"
     ):
@@ -22,6 +24,7 @@ class MainService:
         self.blur_service = blur_service
         self.zone_service = zone_service
         self.person_service = person_service
+        self.count_service = count_service
         self.reid_service = reid_service
         self.camera_id = camera_id
         self.black_zones = []
@@ -44,6 +47,14 @@ class MainService:
         Imposta le zone scure che verranno utilizzate per mascherare i frame.
         """
         self.dark_zones = zones
+    
+    def setCountingLines(self, lines: list[dict]) -> None:
+        """
+        Riceve le linee di conteggio dal Presentation Layer,
+        le salva nel ZoneService e le passa al CountService.
+        """
+        self.zone_service.set_counting_lines(lines)
+        self.count_service.set_counting_lines(lines)
         
     def process_frame(self, frame):
         """
@@ -63,7 +74,7 @@ class MainService:
         # 3. Re-Identification cross-camera (se il servizio è stato fornito)
         if self.reid_service is not None and len(detections) > 0:
             for det in detections:
-                crop = det["crop"]
+                crop = det["crop"] 
                 local_id = det["local_track_id"]
                 pos = det["position"]
                 

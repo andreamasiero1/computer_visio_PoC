@@ -6,7 +6,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
 class BlurService:
-    def __init__(self, blur_strength: int = 99, detection_confidence: float = 0.5):
+    def __init__(self, blur_strength: int = 99, detection_confidence: float = 0.3):
         """
         Servizio per la sfocatura dei volti (privacy GDPR).
         Usa MediaPipe Face Detection di Google per un rilevamento robusto
